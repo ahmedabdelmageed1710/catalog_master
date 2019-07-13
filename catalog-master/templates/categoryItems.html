@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="container">
+	<div class="row">
+
+	    <div class="col-md-6">
+		<h1>Categories</h1>
+		{% for category in categories %}
+			<a href = "{{url_for('categoryItems', categoryName = category.name)}}">
+				<h3>{{category.name}}</h3>
+		    </a>
+		{% endfor %}
+	    </div>
+     
+	    <div class="col-md-6">
+        <h1>{{category.name}} Items ({{items.count()}} items)</h1>
+	    {% for item in items.all() %}
+			<a href = "{{url_for('item', itemTitle = item.title, categoryName = category.name)}}">
+				<h3>{{item.title}}</h3>
+		    </a>
+		{% endfor %}
+        </div>
+
+	</div>
+</div>
+{% endblock %}
